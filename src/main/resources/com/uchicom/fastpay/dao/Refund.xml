@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uchicom.fastpay.dao.RefundMapper">
+
+	<insert id="insert" parameterType="Refund" useGeneratedKeys="true" keyProperty="id">
+		insert into fastpay.refund
+		(
+		inserted,
+		insert_time,
+		charge_id,
+		object,
+		created,
+		currency,
+		amount
+		)
+		values (
+		#{inserted},
+		current_timestamp(),
+		#{chargeId},
+		#{object},
+		#{created},
+		#{currency},
+		#{amount}
+		)
+	</insert>
+
+</mapper>

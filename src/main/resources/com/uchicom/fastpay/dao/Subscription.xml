@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uchicom.fastpay.dao.SubscriptionMapper">
+
+	<insert id="insert" parameterType="Subscription" useGeneratedKeys="true" keyProperty="id">
+		insert into fastpay.subscription
+		(
+		inserted,
+		insert_time,
+		fastpay_id,
+		object,
+		display_id,
+		status,
+		cancel_date,
+		suspended_date,
+		activation_date,
+		created
+		)
+		values (
+		#{inserted},
+		current_timestamp(),
+		#{fastpayId},
+		#{object},
+		#{displayId},
+		#{status},
+		#{cancelDate},
+		#{suspendedDate},
+		#{activationDate},
+		#{created}
+		)
+	</insert>
+	<select id="select" resultType="Subscription" parameterType="Subscription">
+	select
+		id as id,
+		inserted as inserted,
+		insert_time as insertTime,
+		fastpay_id as fastpayId,
+		object as object,
+		display_id as displayId,
+		status as status,
+		cancel_date as cancelDate,
+		suspended_date as suspendedDate,
+		activation_date as activationDate,
+		created as created
+	from fastpay.subscription
+	where
+		id = #{id}
+
+	</select>
+
+</mapper>

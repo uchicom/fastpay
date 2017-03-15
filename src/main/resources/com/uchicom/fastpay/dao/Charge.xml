@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uchicom.fastpay.dao.ChargeMapper">
+
+	<select id="selectOne" resultType="Charge" parameterType="Charge">
+		SELECT
+		id as id,
+		inserted as inserted,
+		insert_time as insertTime,
+		fastpay_id as fastpayId,
+		object as object,
+		livemode as livemode,
+		currency as currency,
+		description as description,
+		amount as amount,
+		amount_refunded as amountRefunded,
+		created as created,
+		paid as paid,
+		refunded as refunded,
+		failure_code as failureCode,
+		failure_message as failureMessage,
+		captured as captured,
+		customer as customer
+		FROM
+		fastpay.charge
+		WHERE
+		<if test="id != null">
+		id = #{id}
+		</if>
+	</select>
+	<insert id="insert" parameterType="Charge" useGeneratedKeys="true" keyProperty="id">
+		insert into fastpay.charge
+		(
+		inserted,
+		insert_time,
+		fastpay_id,
+		object,
+		livemode,
+		currency,
+		description,
+		amount,
+		amount_refunded,
+		created,
+		paid,
+		refunded,
+		failure_code,
+		failure_message,
+		captured,
+		customer
+		)
+		values (
+		#{inserted},
+		current_timestamp(),
+		#{fastpayId},
+		#{object},
+		#{livemode},
+		#{currency},
+		#{description},
+		#{amount},
+		#{amountRefunded},
+		#{created},
+		#{paid},
+		#{refunded},
+		#{failureCode},
+		#{failureMessage},
+		#{captured},
+		#{customer}
+		)
+	</insert>
+
+</mapper>

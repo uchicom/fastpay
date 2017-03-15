@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uchicom.fastpay.dao.CardMapper">
+
+	<insert id="insert" parameterType="Card" useGeneratedKeys="true" keyProperty="id">
+		insert into fastpay.card
+		(
+		inserted,
+		insert_time,
+		charge_id,
+		fastpay_id,
+		object,
+		last4,
+		type,
+		exp_month,
+		exp_year
+		)
+		values (
+		#{inserted},
+		current_timestamp(),
+		#{chargeId},
+		#{fastpayId},
+		#{object},
+		#{last4},
+		#{type},
+		#{expMonth},
+		#{expYear}
+		)
+	</insert>
+
+</mapper>
